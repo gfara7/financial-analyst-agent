@@ -249,12 +249,13 @@ class PDFParser:
             if footnote_texts:
                 footnotes_by_page[page_num] = footnote_texts
 
+        total_pages = len(doc)
         doc.close()
 
         return ParsedDocument(
             document_id=document_id,
             document_title=doc_title,
-            total_pages=len(doc),
+            total_pages=total_pages,
             blocks=all_blocks,
             toc=toc,
             footnotes_by_page=footnotes_by_page,

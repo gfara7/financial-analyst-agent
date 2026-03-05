@@ -135,6 +135,7 @@ else
         --location "$LOCATION" \
         --kind OpenAI \
         --sku S0 \
+        --custom-domain "$AOAI_NAME" \
         --yes \
         --output table
 fi
