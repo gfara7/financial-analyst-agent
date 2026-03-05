@@ -33,9 +33,9 @@ DOCUMENTS = [
     {
         "id": "jpmorgan_10k_2023",
         "filename": "jpmorgan_10k_2023.pdf",
-        "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000127/jpm-20231231.htm",
-        # The actual 10-K PDF from EDGAR:
-        "url_pdf": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000127/jpm-20231231.pdf",
+        "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961724000311/annualreport-2023.pdf",
+        # The actual 10-K PDF from JPMorgan Investor Relations:
+        "url_pdf": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2023/4th-quarter/corp-10k-2023.pdf",
         "description": "JPMorgan Chase 10-K Annual Report 2023 (SEC EDGAR)",
         "document_type": "10k",
         "source": "SEC EDGAR — public domain",
@@ -50,8 +50,8 @@ DOCUMENTS = [
     {
         "id": "fed_fsr_2023",
         "filename": "fed_fsr_2023.pdf",
-        "url_pdf": "https://www.federalreserve.gov/publications/files/financial-stability-report-20231110.pdf",
-        "description": "Federal Reserve Financial Stability Report — November 2023",
+        "url_pdf": "https://www.federalreserve.gov/publications/files/financial-stability-report-20231020.pdf",
+        "description": "Federal Reserve Financial Stability Report — October 2023",
         "document_type": "fsr",
         "source": "Federal Reserve — public domain",
         "chunking_challenges": [

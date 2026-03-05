@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     azure_openai_endpoint: str
     azure_openai_key: str
     azure_openai_api_version: str = "2024-08-01-preview"
-    azure_openai_embedding_deployment: str = "text-embedding-3-small"
+    azure_openai_embedding_deployment: str = "text-embedding-ada-002"
     azure_openai_llm_deployment: str = "gpt-4o"
 
     # ── Azure AI Search ────────────────────────────────────────────────────────

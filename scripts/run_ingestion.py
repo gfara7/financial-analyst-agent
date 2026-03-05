@@ -69,8 +69,8 @@ def main() -> None:
     parser.add_argument(
         "--force",
         action="store_true",
-        default=True,
-        help="Delete existing chunks before ingesting (default: True)",
+        default=False,
+        help="Delete existing chunks and re-ingest even if receipt exists (default: False)",
     )
     args = parser.parse_args()
 
@@ -88,6 +88,10 @@ def main() -> None:
                 console.print(
                     f"[red]Missing: {pdf_path}[/red] — run scripts/download_pdfs.py first"
                 )
+                continue
+            receipt_path = project_root / "data" / "ingested" / f"{doc['id']}.json"
+            if receipt_path.exists() and not args.force:
+                console.print(f"\n[dim]Skipping {doc['id']} — already ingested (use --force to re-ingest)[/dim]")
                 continue
             receipt = pipeline.ingest(
                 pdf_path=pdf_path,

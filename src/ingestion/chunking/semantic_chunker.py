@@ -272,6 +272,19 @@ class SemanticChunker(BaseChunker):
 
         # Split at sentence boundary near midpoint
         sentences = _split_sentences(text)
+
+        # Base case: can't split further (single sentence exceeds max_tokens) — emit as-is
+        if len(sentences) <= 1:
+            return [
+                self._make_chunk(
+                    text=text,
+                    parsed_doc=parsed_doc,
+                    page_start=page_start,
+                    page_end=page_end,
+                    section_path=section_path,
+                )
+            ]
+
         mid = len(sentences) // 2
         first_half = " ".join(sentences[:mid])
         second_half = " ".join(sentences[mid:])

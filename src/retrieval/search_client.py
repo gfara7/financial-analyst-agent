@@ -112,11 +112,11 @@ class FinancialSearchClient:
         filter_expr = " and ".join(filters) if filters else None
 
         # ── 3. Build vector query ─────────────────────────────────────────────
-        # k_nearest_neighbors is the ANN candidate pool, not the final count.
+        # k is the ANN candidate pool, not the final count.
         # We cast a wide net (vector_candidates=50) to maximize recall before fusion.
         vector_query = VectorizedQuery(
             vector=query_embedding,
-            k_nearest_neighbors=vector_candidates,
+            k=vector_candidates,
             fields="embedding",
         )
 

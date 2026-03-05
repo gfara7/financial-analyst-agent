@@ -58,7 +58,7 @@ def run_query(query: str, verbose: bool = False) -> str:
         for step in graph.stream(state):
             node_name = list(step.keys())[0]
             node_output = step[node_name]
-            console.print(f"[dim]── Node: {node_name}[/dim]")
+            console.print(f"[dim]-- Node: {node_name}[/dim]")
 
             if node_name == "decompose_query" and "sub_questions" in node_output:
                 sqs = node_output["sub_questions"]

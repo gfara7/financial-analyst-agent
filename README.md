@@ -79,7 +79,7 @@ Real public-domain financial PDFs used as the knowledge base:
 
 | Resource | Tier | Monthly Cost | Purpose |
 |----------|------|-------------|---------|
-| Azure OpenAI | S0 | ~$0 standby | gpt-4o (LLM) + text-embedding-3-small |
+| Azure OpenAI | S0 | ~$0 standby | gpt-4o (LLM) + text-embedding-ada-002 |
 | Azure AI Search | **Basic** | ~$74 | HNSW vector index + hybrid search + semantic reranking |
 | Azure Blob Storage | Standard LRS | ~$0.01 | Source PDF storage (audit trail) |
 | **Total** | | **~$74/month** | Provision → demo → teardown for ~$2-5 |
@@ -230,13 +230,14 @@ For financial research, fabricated citations could constitute misrepresentation.
 
 ```bash
 # 1. Clone and install
-cd "c:/Users/George/Desktop/Finance ML/financial_analyst_agent"
+git clone https://github.com/gfara7/financial-analyst-agent.git
+cd financial-analyst-agent
 python -m venv .venv && source .venv/Scripts/activate
 pip install -e ".[dev]"
 
 # 2. Provision Azure resources (writes .env automatically)
 az login
-bash infra/provision.sh rg-financial-agent eastus
+bash infra/provision.sh rg-financial-agent swedencentral
 
 # 3. Download source PDFs (~500MB total)
 python scripts/download_pdfs.py
