@@ -251,9 +251,46 @@ python main.py --query "What are the key credit risk factors for large US banks?
 # 6. Interactive mode
 python main.py --interactive
 
-# 7. Tear down when done (~$2-5 for one demo day)
+# 7. Run the web frontend locally
+python scripts/run_web_frontend.py
+# Open http://127.0.0.1:8000
+
+# 8. Validate + deploy frontend to Azure Container Apps
+bash infra/validate_frontend.sh
+bash infra/deploy_frontend.sh
+
+# 9. Tear down when done (~$2-5 for one demo day)
 bash infra/teardown.sh
 ```
+
+---
+
+## Web Frontend
+
+The project now includes a Python Flask web UI that calls the existing LangGraph agent directly.
+
+### Localhost
+
+```bash
+python scripts/run_web_frontend.py
+```
+
+Open: `http://127.0.0.1:8000`
+
+### Azure Deployment (cheap option)
+
+This repo includes deployment scripts for Azure Container Apps in consumption mode (scale-to-zero):
+
+```bash
+bash infra/validate_frontend.sh
+bash infra/deploy_frontend.sh
+```
+
+What gets created:
+- Log Analytics Workspace
+- Container Apps Environment
+- Azure Container Registry (Basic SKU)
+- Azure Container App (`0.25 CPU`, `0.5Gi`, `min replicas=0`, `max replicas=1`)
 
 ---
 
@@ -369,7 +406,7 @@ pytest tests/ -v
 # Key tests to highlight in interview
 pytest tests/test_chunkers.py::TestHierarchicalChunker::test_table_kept_as_single_chunk -v
 pytest tests/test_chunkers.py::TestStrategyComparison::test_hierarchical_produces_more_metadata -v
-pytest tests/test_agent_graph.py::TestRouteAfterEvaluate::test_retry_on_low_score -v
+pytest tests/test_agent_graph.py::TestRouteAfterEvaluate::test_low_score_routes_to_refine -v
 pytest tests/test_agent_graph.py::TestRouteAfterEvaluate::test_max_retries_routes_to_synthesis -v
 ```
 

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Financial Analyst Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <main class="app-shell">
+        <header class="app-header">
+            <p class="eyebrow">Finance ML</p>
+            <h1>Financial Analyst Agent</h1>
+            <p class="subtitle">Ask a question and get a citation-backed report from your indexed financial corpus.</p>
+        </header>
+
+        <section class="chat-card" aria-live="polite">
+            <div id="messages" class="messages">
+                <article class="msg msg-assistant">
+                    <h2>Assistant</h2>
+                    <p>Ask anything about credit risk, Basel III, JPMorgan 10-K, Fed stability, or ECB macro context.</p>
+                </article>
+            </div>
+            <form id="ask-form" class="ask-form">
+                <label class="visually-hidden" for="query">Question</label>
+                <textarea
+                    id="query"
+                    name="query"
+                    rows="3"
+                    maxlength="2000"
+                    placeholder="Example: Compare JPMorgan capital position with Basel III minimum requirements."
+                    required
+                ></textarea>
+                <div class="form-row">
+                    <span id="status" class="status">Idle</span>
+                    <button id="submit-btn" type="submit">Run Analysis</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+

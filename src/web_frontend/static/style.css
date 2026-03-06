@@ -1,0 +1,258 @@
+:root {
+    --bg: #f4f1e9;
+    --ink: #1f2a37;
+    --ink-soft: #4b5563;
+    --card: rgba(255, 255, 255, 0.82);
+    --accent: #0f766e;
+    --accent-strong: #115e59;
+    --line: rgba(31, 42, 55, 0.14);
+    --warn: #92400e;
+    --mono: "IBM Plex Mono", monospace;
+    --sans: "Space Grotesk", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--sans);
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 10% 10%, #d3f0ea 0%, transparent 45%),
+        radial-gradient(circle at 88% 88%, #f7d4bc 0%, transparent 44%),
+        linear-gradient(140deg, #f4f1e9 0%, #f8f7f3 100%);
+    overflow-x: hidden;
+}
+
+.bg-orb {
+    position: fixed;
+    width: 28rem;
+    height: 28rem;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.2;
+    pointer-events: none;
+    animation: drift 10s ease-in-out infinite alternate;
+}
+
+.orb-a {
+    background: #16a34a;
+    top: -8rem;
+    left: -6rem;
+}
+
+.orb-b {
+    background: #ea580c;
+    bottom: -10rem;
+    right: -7rem;
+    animation-delay: 0.8s;
+}
+
+@keyframes drift {
+    from { transform: translateY(0px); }
+    to { transform: translateY(18px); }
+}
+
+.app-shell {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2.5rem 1rem 2rem;
+}
+
+.app-header {
+    margin-bottom: 1.2rem;
+    animation: reveal 0.5s ease both;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    margin: 0;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+}
+
+h1 {
+    margin: 0.2rem 0 0.35rem;
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    line-height: 1.1;
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--ink-soft);
+}
+
+.chat-card {
+    background: var(--card);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    padding: 1rem;
+    animation: reveal 0.7s ease both;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.messages {
+    max-height: 62vh;
+    overflow-y: auto;
+    padding: 0.2rem;
+    scroll-behavior: smooth;
+}
+
+.msg {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 0.85rem 0.95rem;
+    margin: 0 0 0.85rem;
+    line-height: 1.45;
+}
+
+.msg h2 {
+    margin: 0 0 0.4rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: var(--mono);
+}
+
+.msg-user {
+    background: #f0fdf9;
+    border-color: #99f6e4;
+}
+
+.msg-assistant {
+    background: #fff;
+}
+
+.msg-error {
+    background: #fff7ed;
+    border-color: #fdba74;
+    color: var(--warn);
+}
+
+.msg p,
+.msg li,
+.msg td,
+.msg th {
+    margin: 0.2rem 0;
+}
+
+.msg table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.msg table th,
+.msg table td {
+    border: 1px solid var(--line);
+    padding: 0.35rem 0.4rem;
+    text-align: left;
+}
+
+.ask-form {
+    border-top: 1px solid var(--line);
+    padding-top: 0.9rem;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 96px;
+    max-height: 260px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #fff;
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--ink);
+    padding: 0.7rem 0.85rem;
+}
+
+textarea:focus {
+    outline: 2px solid rgba(15, 118, 110, 0.27);
+    border-color: var(--accent);
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 0.65rem;
+}
+
+.status {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+}
+
+button {
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #fff;
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    filter: grayscale(0.2);
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+
+@media (max-width: 640px) {
+    .app-shell {
+        padding-top: 1.2rem;
+    }
+    .messages {
+        max-height: 56vh;
+    }
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    button {
+        width: 100%;
+    }
+}
+
